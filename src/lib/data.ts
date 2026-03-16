@@ -22,6 +22,13 @@ export interface CollectiveNarrative {
   status: "active" | "planning" | "completed";
 }
 
+export interface Genre {
+  name: string;
+  icon: string;
+  description: string;
+  writers: string;
+}
+
 export interface Archetype {
   name: string;
   description: string;
@@ -33,10 +40,6 @@ export interface JourneyStage {
   status: "Active" | "Emphasized";
 }
 
-export interface Genre {
-  name: string;
-  icon: string;
-}
 
 export interface TherapeuticPrinciple {
   name: string;
@@ -67,13 +70,85 @@ export interface EchoStory {
   color: string;
 }
 
-// Hero View Data
-export const genres: Genre[] = [
-  { name: "Adventure", icon: "🏔️" },
-  { name: "Mystery", icon: "🔍" },
-  { name: "Epic", icon: "⚔️" },
-  { name: "Fantasy", icon: "✨" },
+// Hero View Data — Row 1: Classic & Familiar
+export const genresRow1: Genre[] = [
+  { name: "Adventure", icon: "🏔️", description: "High-stakes quests, exploration, and physical challenges overcome through courage and resourcefulness.", writers: "Jules Verne, Robert Louis Stevenson, Clive Cussler" },
+  { name: "Epic", icon: "⚔️", description: "Grand-scale heroism with world-changing stakes, legendary heroes facing impossible odds.", writers: "Homer, Tolkien, George R.R. Martin" },
+  { name: "Fantasy", icon: "✨", description: "Magic systems, imaginary worlds, quests where the impossible becomes possible.", writers: "J.R.R. Tolkien, Ursula K. Le Guin, Brandon Sanderson" },
+  { name: "Mystery", icon: "🔍", description: "Puzzle-solving and investigation, uncovering hidden truths through cleverness and observation.", writers: "Agatha Christie, Arthur Conan Doyle, Tana French" },
+  { name: "Sci-Fi", icon: "🚀", description: "Science and technology as both problem and solution, exploring humanity's future possibilities.", writers: "Isaac Asimov, Ursula K. Le Guin, Liu Cixin, Octavia Butler" },
+  { name: "Horror", icon: "👁️", description: "Survival against terror, confronting fears and emerging changed — if you emerge at all.", writers: "Stephen King, Shirley Jackson, Carmen Maria Machado" },
+  { name: "Thriller", icon: "🔦", description: "High-stakes tension and time pressure, quick thinking under extreme circumstances.", writers: "Lee Child, Gillian Flynn, John le Carré" },
+  { name: "Noir", icon: "🌧️", description: "Detective navigating moral gray zones in corrupt systems, cynicism meeting idealism.", writers: "Raymond Chandler, Dashiell Hammett, Walter Mosley" },
+  { name: "Western", icon: "🤠", description: "Frontier justice and lone wanderers creating order from chaos through grit and code.", writers: "Cormac McCarthy, Larry McMurtry, Elmore Leonard" },
+  { name: "Heist", icon: "💼", description: "Clever planning and underdog teams outsmarting powerful systems through coordination.", writers: "Scott Lynch, Leigh Bardugo, Michael Crichton" },
+  { name: "Survival", icon: "🔥", description: "Wilderness, isolation, and resourcefulness against nature's indifference.", writers: "Gary Paulsen, Jack London, Andy Weir" },
+  { name: "Space Opera", icon: "🌠", description: "Star Wars-scale heroism with galaxy-spanning conflicts and cosmic stakes.", writers: "Lois McMaster Bujold, Ann Leckie, Iain M. Banks" },
+  { name: "Post-Apocalyptic", icon: "🏚️", description: "Survival and rebuilding after civilization's collapse, creating new worlds from ruins.", writers: "Cormac McCarthy, Emily St. John Mandel, N.K. Jemisin" },
+  { name: "Steampunk", icon: "🔧", description: "Victorian-era aesthetic meets fantastical technology, invention as heroism.", writers: "China Miéville, Cherie Priest, Gail Carriger" },
+  { name: "Urban Fantasy", icon: "🌃", description: "Magic hidden in modern cities, supernatural threats in familiar settings.", writers: "Neil Gaiman, Jim Butcher, Seanan McGuire" },
+  { name: "Superhero", icon: "🦸", description: "Literal power fantasy where abilities become responsibility and moral tests.", writers: "V.E. Schwab, Brandon Sanderson, Grant Morrison" },
+  { name: "Dark Fantasy", icon: "🖤", description: "Grim, morally complex fantasy where heroes are tarnished and victories cost everything.", writers: "Joe Abercrombie, Glen Cook, Mark Lawrence" },
+  { name: "Sword & Sorcery", icon: "🗡️", description: "Conan-style violent magic, individual warriors against sorcerous threats.", writers: "Robert E. Howard, Fritz Leiber, Michael Moorcock" },
+  { name: "Fairy Tale", icon: "🏰", description: "Classic story structures with transformation, enchantment, and archetypal journeys.", writers: "Angela Carter, Robin McKinley, Naomi Novik" },
+  { name: "Gothic Romance", icon: "🥀", description: "Haunted by the past in atmospheric settings, dark secrets and passionate intensity.", writers: "Daphne du Maurier, Charlotte Brontë, Shirley Jackson" },
+  { name: "Mythology", icon: "🏛️", description: "Gods and legendary heroes, cosmic battles and divine intervention in mortal affairs.", writers: "Homer, Edith Hamilton, Madeline Miller, Neil Gaiman" },
+  { name: "Folklore", icon: "🌾", description: "Traditional tale structures passed down through generations, archetypal wisdom.", writers: "Brothers Grimm, Zora Neale Hurston, Hans Christian Andersen" },
+  { name: "Historical Epic", icon: "📜", description: "Real-world historical heroism reimagined, actual events as legendary narratives.", writers: "Hilary Mantel, Ken Follett, Colson Whitehead" },
+  { name: "Wuxia", icon: "🐉", description: "Chinese martial arts with honor codes, internal cultivation and righteous heroism.", writers: "Jin Yong, Gu Long, films by Zhang Yimou" },
+  { name: "Swashbuckler", icon: "🏴‍☠️", description: "Pirates, musketeers, and daring escapes with wit, swordplay, and romantic heroism.", writers: "Alexandre Dumas, Rafael Sabatini" },
+  { name: "Spy Thriller", icon: "🕵️", description: "Espionage, double agents, and intrigue in shadowy intelligence wars.", writers: "John le Carré, Ian Fleming, Mick Herron" },
+  { name: "Cyberpunk", icon: "💻", description: "High-tech dystopia where hackers and rebels fight corporate control through digital warfare.", writers: "William Gibson, Neal Stephenson, Bruce Sterling" },
+  { name: "Anime Battle", icon: "🌀", description: "Tournament arcs and power escalation, friendship and training overcome impossible odds.", writers: "Dragon Ball, Naruto, My Hero Academia" },
+  { name: "Coming of Age", icon: "🌱", description: "Youth to maturity, bildungsroman where innocence meets experience and identity forms.", writers: "S.E. Hinton, Ursula K. Le Guin, Jason Reynolds" },
+  { name: "Redemption Arc", icon: "🌅", description: "Fallen hero rising from mistakes, earning second chances through concrete change.", writers: "Victor Hugo, Brandon Sanderson, Gene Wolfe" },
+  { name: "Revenge Quest", icon: "⚖️", description: "Wronged hero seeking justice, fury transformed into focused mission.", writers: "Alexandre Dumas (Count of Monte Cristo), Joe Abercrombie" },
+  { name: "Trickster Tale", icon: "🎩", description: "Wit over strength, clever underdogs outsmarting powerful forces through cunning.", writers: "Neil Gaiman (Anansi Boys), Terry Pratchett" },
+  { name: "Disaster", icon: "🌪️", description: "Catastrophe response and human resilience when systems collapse.", writers: "Station Eleven, Contagion, Lucifer's Hammer" },
+  { name: "Military Fiction", icon: "🎖️", description: "Tactical heroism and brotherhood forged in combat, warrior codes and sacrifice.", writers: "Tom Clancy, Joe Haldeman, Marko Kloos" },
+  { name: "Portal Fantasy", icon: "🚪", description: "Ordinary person transported to extraordinary world, fish-out-of-water heroism.", writers: "C.S. Lewis, Lev Grossman, V.E. Schwab" },
 ];
+
+// Hero View Data — Row 2: Specialty & Transformative
+export const genresRow2: Genre[] = [
+  { name: "Solarpunk", icon: "☀️", description: "Eco-optimism where community resilience and sustainable futures become heroic achievements.", writers: "Becky Chambers, Kim Stanley Robinson, Cory Doctorow" },
+  { name: "Hopepunk", icon: "💛", description: "Radical kindness as rebellion, optimism and compassion as active resistance to darkness.", writers: "Becky Chambers, Mary Robinette Kowal, T.J. Klune" },
+  { name: "Afrofuturism", icon: "🌟", description: "Cultural reclamation through speculative fiction, imagining Black futures and alternate histories.", writers: "Octavia Butler, N.K. Jemisin, Nnedi Okorafor" },
+  { name: "Weird West", icon: "🦂", description: "Frontier mythology collides with supernatural forces, cowboy meets cosmic horror.", writers: "Stephen King (Dark Tower), Joe R. Lansdale, Emma Bull" },
+  { name: "Cosmic Horror", icon: "🌑", description: "Insignificance in vast universe transformed into defiant courage against incomprehensible forces.", writers: "H.P. Lovecraft, Laird Barron, Victor LaValle" },
+  { name: "Mythpunk", icon: "🧿", description: "Folklore reimagined and subverted, traditional stories turned inside-out.", writers: "Catherynne M. Valente, Theodora Goss, Nalo Hopkinson" },
+  { name: "Silkpunk", icon: "🎋", description: "Asian-inspired tech aesthetics and cultural innovation, non-Western engineering heroism.", writers: "Ken Liu, Fonda Lee, Aliette de Bodard" },
+  { name: "Cli-Fi", icon: "🌊", description: "Environmental crisis as heroic crucible, adaptation and activism in a warming world.", writers: "Kim Stanley Robinson, Paolo Bacigalupi, Margaret Atwood" },
+  { name: "LitRPG", icon: "🎮", description: "Gamified reality where leveling up through adversity has literal mechanical rewards.", writers: "Dakota Krout, Tao Wong, Shirtaloon" },
+  { name: "Dying Earth", icon: "🕯️", description: "Beauty and heroism in entropy and decline, finding meaning as worlds end.", writers: "Jack Vance, Gene Wolfe, M. John Harrison" },
+  { name: "Biopunk", icon: "🧬", description: "Genetic engineering and body modification as both weapon and identity, biological revolution.", writers: "Paolo Bacigalupi, Margaret Atwood, Octavia Butler" },
+  { name: "Dieselpunk", icon: "⚙️", description: "1920s–50s aesthetic with alternate history, Art Deco meets warfare and noir atmosphere.", writers: "China Miéville, BioShock, Hayao Miyazaki" },
+  { name: "Atompunk", icon: "☢️", description: "1950s atomic age optimism and paranoia, raygun gothic and nuclear-powered futures.", writers: "Fallout (game), Philip K. Dick, The Jetsons" },
+  { name: "Nanopunk", icon: "🔬", description: "Nanotechnology and microscopic battles, inner-space as new frontier.", writers: "Neal Stephenson, Michael Crichton, Linda Nagata" },
+  { name: "Cassette Futurism", icon: "📼", description: "Retro-future aesthetics with analog technology, chunky interfaces and tape-based futures.", writers: "Alien film aesthetic, Cowboy Bebop, The Expanse" },
+  { name: "Low Fantasy", icon: "⛺", description: "Minimal magic in grounded worlds, gritty realism with hints of supernatural.", writers: "Guy Gavriel Kay, George R.R. Martin, Robin Hobb" },
+  { name: "Bollywood Epic", icon: "🎬", description: "Musical dramatic heroism with elevated emotions, family honor, and spectacular production.", writers: "Sanjay Leela Bhansali, K. Asif, Yash Chopra" },
+  { name: "Telenovela", icon: "🌹", description: "Melodramatic stakes where passion and fate collide across class boundaries.", writers: "Isabel Allende, Gabriel García Márquez, Jane the Virgin" },
+  { name: "K-Drama", icon: "🌸", description: "Emotional intensity where fate and choice intertwine, trauma and healing through connection.", writers: "Goblin, My Mister, Reply series" },
+  { name: "Neurodivergent Hero", icon: "🧠", description: "Autism, ADHD, different processing as strength rather than deficit to overcome.", writers: "Naoki Higashida, Corinne Duyvis, Mark Haddon" },
+  { name: "Crip Futurism", icon: "♾️", description: "Disability justice and reimagined access, futures built for disabled bodies and minds.", writers: "Leah Lakshmi Piepzna-Samarasinha, Octavia Butler" },
+  { name: "Chronic Illness Quest", icon: "💊", description: "Invisible battles with pacing, advocacy, and redefining heroism beyond physical prowess.", writers: "Laurie Edwards, disability memoirs" },
+  { name: "Deaf Gain", icon: "🤟", description: "Sign language worlds where visual communication is primary, deaf culture as richness not lack.", writers: "Sara Nović, Ann Clare LeZotte, Raymond Luczak" },
+  { name: "Mad Pride", icon: "🦋", description: "Reclaiming mental health narratives and liberation from medical model pathologizing.", writers: "Elyn Saks, Susanna Kaysen, Sylvia Plath" },
+  { name: "Grief Journey", icon: "🕊️", description: "Loss transformation and continuing bonds, death as catalyst for profound change.", writers: "Joan Didion, Chimamanda Ngozi Adichie, Megan Devine" },
+  { name: "Survivor's Tale", icon: "💪", description: "Post-trauma identity and reclaiming power from experiences that tried to destroy you.", writers: "Maya Angelou, Roxane Gay, Tara Westover" },
+  { name: "Recovery Quest", icon: "🌄", description: "Addiction and relapse as plot points not failure, sobriety as ongoing heroic effort.", writers: "Caroline Knapp, Leslie Jamison, David Sheff" },
+  { name: "PTSD Warrior", icon: "🛡️", description: "Triggers as antagonists and coping skills as weapons in ongoing internal war.", writers: "Phil Klay, Kevin Powers, Bessel van der Kolk" },
+  { name: "Healing Circle", icon: "🤝", description: "Community support as magic system, collective care as revolutionary act.", writers: "adrienne maree brown, bell hooks, Alice Walker" },
+  { name: "Depression as Dark Night", icon: "🌒", description: "Spiritual crisis and emergence, the void as transformative passage not permanent state.", writers: "Andrew Solomon, William Styron, St. John of the Cross" },
+  { name: "Anxiety as Oracle", icon: "🪞", description: "Hypervigilance reframed as foresight, pattern recognition as survival superpower.", writers: "Scott Stossel, Sarah Wilson" },
+  { name: "Dissociation as Portal", icon: "💫", description: "Multiple selves and fragmented hero journeying between internal worlds.", writers: "Judith Herman, The Haunting of Hill House" },
+  { name: "Intrusive Thoughts as Demons", icon: "😈", description: "Externalizing and battling unwanted thoughts as distinct antagonistic forces.", writers: "John Green (Turtles All the Way Down), Fletcher Wortmann" },
+  { name: "Manic Episode as Quest", icon: "⚡", description: "Intensity, risk, and consequence in high-energy states, euphoria meeting destruction.", writers: "Kay Redfield Jamison, Carrie Fisher, Marya Hornbacher" },
+];
+
+// Combined for backward compatibility
+export const genres: Genre[] = [...genresRow1, ...genresRow2];
 
 export const stories: Story[] = [
   {
